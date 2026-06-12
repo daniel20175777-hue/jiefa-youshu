@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#123f35" />
+    <meta name="description" content="不猜发球动作名称，用落点、长短、上下旋与侧拐学会乒乓球接发球" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=24" />
+    <title>接发有数</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">数</div>
+          <div>
+            <h1>接发有数</h1>
+            <p>不猜动作，只看旋转</p>
+          </div>
+        </div>
+        <div class="header-stats">
+          <div class="mini-stat"><strong id="streakCount">0</strong><span>连续天数</span></div>
+          <div class="mini-stat"><strong id="masteredCount">0%</strong><span>综合掌握</span></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="view active" id="dashboard">
+          <div class="hero">
+            <article class="card dark-card">
+              <p class="eyebrow">动作再奇怪，也只拆四步</p>
+              <h2>不背 63 个答案，学会自己生成答案。</h2>
+              <p class="lead">先看球到哪里，再看长短；上下旋决定拍面，侧旋只负责修正方向。</p>
+              <div class="formula">
+                <div class="formula-step"><b>1</b>看左右</div>
+                <div class="formula-step"><b>2</b>看长短</div>
+                <div class="formula-step"><b>3</b>判上下</div>
+                <div class="formula-step"><b>4</b>修左右</div>
+              </div>
+              <button class="primary" data-view-target="learn">先理解这套规则</button>
+            </article>
+
+            <article class="card dark-card">
+              <p class="eyebrow">今日推荐</p>
+              <h3 id="recommendedTitle">第 1 天：只学长短与 6 区</h3>
+              <p class="lead" id="recommendedCopy">先建立落点坐标。</p>
+              <div class="dashboard-stats">
+                <div class="big-stat"><strong id="dueCount">0</strong><span>到期复习</span></div>
+                <div class="big-stat"><strong id="answerCount">0</strong><span>累计判断</span></div>
+              </div>
+              <button class="primary" id="continueButton">开始今天训练</button>
+            </article>
+          </div>
+
+          <div class="section-head">
+            <div><p class="eyebrow">能力路径</p><h2>四层建立真实反应</h2></div>
+          </div>
+          <div class="skill-path">
+            <article class="card path-card"><div class="logic-number">1</div><h3>底层逻辑</h3><p>知道每条信息到底控制脚、拍面还是方向。</p></article>
+            <article class="card path-card"><div class="logic-number">2</div><h3>6 区到 9 区</h3><p>先辨短长，再加入最容易犹豫的半出台。</p></article>
+            <article class="card path-card"><div class="logic-number">3</div><h3>组合生成器</h3><p>选择任何落点和旋转，生成完整解决方案。</p></article>
+            <article class="card path-card"><div class="logic-number">4</div><h3>间隔训练</h3><p>错题重现，正确题按 1、3、7、14、30 天复习。</p></article>
+          </div>
+        </section>
+
+        <section class="view" id="learn">
+          <div class="section-head">
+            <div><p class="eyebrow">第一层</p><h2>一球只做四个判断</h2></div>
+            <p>顺序不能乱。先解决够不够得到，再解决拍面怎么放，最后修正侧旋。</p>
+          </div>
+          <div class="logic-grid">
+            <article class="card logic-card"><div class="logic-number">1</div><h3>落在哪里？</h3><p>反手、中路还是正手，决定身体先移动到哪里。</p></article>
+            <article class="card logic-card"><div class="logic-number">2</div><h3>短还是长？</h3><p>短球右脚上步；长球让出挥拍空间；半出台先小调整。</p></article>
+            <article class="card logic-card"><div class="logic-number">3</div><h3>上下旋？</h3><p>下旋拍面稍仰，上旋稍压，不转比下旋更向前。</p></article>
+            <article class="card logic-card"><div class="logic-number">4</div><h3>向哪边拐？</h3><p>球向左拐就向右瞄一点，向右拐就向左瞄一点。</p></article>
+          </div>
+          <article class="card rule-card">
+            <div class="rule-icon">!</div>
+            <div><h3>实战看不清时的保底规则</h3><p class="zone-copy">短球轻搓，长球紧凑挡，统一先回深中路。它不是最终技术，但能让你先摆脱犹豫。</p></div>
+          </article>
+        </section>
+
+        <section class="view" id="zones">
+          <div class="section-head">
+            <div><p class="eyebrow">第二层</p><h2>先学 6 区，再升级 9 区</h2></div>
+            <div class="segmented">
+              <button class="segment-button active" data-zone-mode="6">入门 6 区</button>
+              <button class="segment-button" data-zone-mode="9">进阶 9 区</button>
+            </div>
+          </div>
+          <div class="zone-layout">
+            <div class="table-stage">
+              <span class="net-label">球网 / 对手</span>
+              <div id="zoneTable"></div>
+              <span class="player-label">你站在这里：左边反手，右边正手</span>
+            </div>
+            <article class="card zone-detail" id="zoneDetail"></article>
+          </div>
+          <p class="zone-note">这里的 6 区、9 区是本工具的训练坐标，不是统一的官方编号。近网到端线依次为短、半出台、长。</p>
+        </section>
+
+        <section class="view" id="matrix">
+          <div class="section-head">
+            <div><p class="eyebrow">第三层</p><h2>落点 × 旋转解决方案</h2></div>
+            <p>点一个区，再点一种旋转。系统按同一套底层逻辑生成脚步、拍面和战术。</p>
+          </div>
+          <div class="matrix-layout">
+            <div>
+              <div class="table-stage">
+                <span class="net-label">球网 / 对手</span>
+                <div id="matrixZoneTable"></div>
+                <span class="player-label">你的第一视角</span>
+              </div>
+              <div class="spin-selector" id="spinSelector"></div>
+            </div>
+            <article class="card">
+              <div class="solution-head">
+                <p class="eyebrow" id="solutionTag">第 1 区</p>
+                <h3 id="solutionSpin">反手位短球 × 下旋</h3>
+              </div>
+              <div class="solution-grid">
+                <div class="solution-item"><strong>脚步</strong><p id="solutionFootwork"></p></div>
+                <div class="solution-item"><strong>拍面</strong><p id="solutionRacket"></p></div>
+                <div class="solution-item"><strong>触球</strong><p id="solutionContact"></p></div>
+                <div class="solution-item"><strong>回球落点</strong><p id="solutionPlacement"></p></div>
+                <div class="solution-item"><strong>如果你来发</strong><p id="solutionServe"></p></div>
+                <div class="solution-item"><strong>常见错误</strong><p id="solutionRisk"></p></div>
+              </div>
+              <div class="aim-note">
+                <strong>不要想“线路”，只看三个落点</strong>
+                <div class="aim-demo" aria-label="侧旋修正示意图">
+                  <span class="aim-net">对方球台</span>
+                  <i class="aim-target left">左</i>
+                  <i class="aim-target center">中</i>
+                  <i class="aim-target right">右</i>
+                  <b class="aim-you">你</b>
+                </div>
+                <p><strong>例子：</strong>你本来想回到“中”，试接后球却总落到“左”。下一球不要再瞄“中”，改瞄“右”约一个拍宽。侧旋把球带回来后，实际就更接近“中”。</p>
+                <p class="aim-rule">回球偏左 → 下一球瞄右；回球偏右 → 下一球瞄左。这里的左右都是你面向球网时看到的左右。</p>
+              </div>
+            </article>
+          </div>
+          <section class="serve-ranking">
+            <div class="section-head">
+              <div><p class="eyebrow">常见训练先验</p><h2>落点与旋转套路</h2></div>
+              <p>不管对手用勾手、砍式、反手还是非标准动作，都拆成短或反手长、上下旋和侧拐方向。百分比不是官方比赛统计。</p>
+            </div>
+            <div class="ranking-summary">
+              <div><strong>54%</strong><span>前四类约占一半，优先练</span></div>
+              <div><strong>61%</strong><span>以下旋或侧下为主旋转</span></div>
+              <div><strong>先判上下</strong><span>不要先猜发球动作名称</span></div>
+            </div>
+            <div class="serve-ranking-list" id="serveRankingList"></div>
+          </section>
+        </section>
+
+        <section class="view" id="drill">
+          <div class="section-head">
+            <div><p class="eyebrow">像驾考宝典一样学习</p><h2>专项题库与模拟考试</h2></div>
+            <p>答错看解释并进入错题复习；模拟考试共 20 题。</p>
+          </div>
+          <div class="drill-modes">
+            <button class="segment-button" data-drill-mode="zone">只练落点</button>
+            <button class="segment-button" data-drill-mode="spin">只练旋转</button>
+            <button class="segment-button active" data-drill-mode="combo">完整组合</button>
+            <button class="segment-button" data-drill-mode="serve">发抢套路</button>
+            <button class="segment-button" data-drill-mode="exam">模拟考试</button>
+          </div>
+          <div class="drill-layout">
+            <article class="card question-card">
+              <div class="exam-progress" id="examProgress" hidden></div>
+              <div class="exam-result" id="examResult" hidden></div>
+              <div id="questionTable"></div>
+              <div class="question-clues" id="questionClues"></div>
+              <h3 id="questionText"></h3>
+              <div class="answers" id="drillAnswers"></div>
+              <div class="feedback" id="drillFeedback"></div>
+              <div class="next-row">
+                <button class="primary" id="restartExam" hidden>重新考试</button>
+                <button class="primary" id="nextDrill" hidden>下一球</button>
+              </div>
+            </article>
+            <aside class="card">
+              <p class="eyebrow">当前能力图谱</p>
+              <div class="mastery-list">
+                <div class="mastery-line"><div class="mastery-label"><strong>落点</strong><span id="mastery-zone-value">0%</span></div><div class="bar"><span id="mastery-zone"></span></div></div>
+                <div class="mastery-line"><div class="mastery-label"><strong>旋转</strong><span id="mastery-spin-value">0%</span></div><div class="bar"><span id="mastery-spin"></span></div></div>
+                <div class="mastery-line"><div class="mastery-label"><strong>完整组合</strong><span id="mastery-combo-value">0%</span></div><div class="bar"><span id="mastery-combo"></span></div></div>
+                <div class="mastery-line"><div class="mastery-label"><strong>发球战术</strong><span id="mastery-serve-value">0%</span></div><div class="bar"><span id="mastery-serve"></span></div></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="course">
+          <div class="section-head">
+            <div><p class="eyebrow">七天启动计划</p><h2>每天 20 分钟建立第一轮反应</h2></div>
+            <p>这七天是启动，不是假装一周成为高手。目标是比赛中知道自己为什么这样接。</p>
+          </div>
+          <div class="course-list" id="courseList"></div>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="主导航">
+      <button class="nav-button active" data-view-target="dashboard">首页</button>
+      <button class="nav-button" data-view-target="learn">逻辑</button>
+      <button class="nav-button" data-view-target="zones">分区</button>
+      <button class="nav-button" data-view-target="matrix">组合</button>
+      <button class="nav-button" data-view-target="drill">训练</button>
+      <button class="nav-button" data-view-target="course">计划</button>
+    </nav>
+    <script src="app.js?v=24"></script>
+  </body>
+</html>
