@@ -1,0 +1,17 @@
+{
+  "name": "接发有数",
+  "short_name": "接发有数",
+  "description": "不猜动作名称，用落点、长短、上下旋与侧拐学会乒乓球接发球",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f2efe7",
+  "theme_color": "#123f35",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
